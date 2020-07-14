@@ -1,2 +1,2 @@
 # MicroQueueServer
-Basic mincraft server based on stonewall to provide a "parking slot" for the player until a slot on the main server gets free.
+Simple minecraft server based on a stonewall to provide a "parking space" for the player until a space becomes available on the main server.
