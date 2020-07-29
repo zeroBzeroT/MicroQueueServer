@@ -6,6 +6,7 @@ includes
 - tab
 - basic chat
 by bierdosenhalter
+other random stuff done by TimG3000
 """
 
 from twisted.internet import reactor
@@ -21,35 +22,20 @@ class Queue(ServerProtocol):
         # 1.13.2
         if self.protocol_version <= 404:
             self.send_packet("join_game",
-                self.buff_type.pack("iBiBB",
-                    0,                              # entity id
-                    3,                              # game mode
-                    1,                              # dimension
-                    3,                              # difficulty
-                    0),                             # Max Players	
+                self.buff_type.pack("iBiBB", 0, 3, 1, 3, 0), # entity ID, gamemode, dimension, difficulty, Max Players                         
                 self.buff_type.pack_string("flat"), # level type
                 self.buff_type.pack("?", False))    # reduced debug info
         else:
         # Send "Join Game" packet
             self.send_packet("join_game",
-                self.buff_type.pack("iBiB",
-                    0,                              # entity id
-                    3,                              # game mode
-                    1,                              # dimension
-                    0),                             # max players
+                self.buff_type.pack("iBiB", 0, 3, 1, 0), # entity ID, gamemofr, dimension, max players
                 self.buff_type.pack_string("flat"), # level type
                 self.buff_type.pack_varint(1),      # view distance
                 self.buff_type.pack("?", False))    # reduced debug info
    
         # Send "Player Position and Look" packet
         self.send_packet("player_position_and_look",
-            self.buff_type.pack("dddff?",
-                2147483647,                # x
-                1337,                      # y
-                2147483647,                # z
-                0,                         # yaw
-                0,                         # pitch
-                0b00000),                  # flags
+            self.buff_type.pack("dddff?", 2147483647, 1337, 2147483647, 0, 0, 0, 0b00000), # x, y, z, yaw, pitch, flags
             self.buff_type.pack_varint(0)) # teleport id
 
         # Send "Player List Header And Footer" packet
